@@ -1,0 +1,119 @@
+buildscript {
+    ext {
+        //Spring
+        springBootVersion = "2.0.1.RELEASE"
+        springfoxVersion = '2.7.0'
+
+        //JsonWebToken
+        jsonWebTokenVersion = '0.7.0'
+
+        mySqlConnectorVersion = "5.1.45"
+        h2DbConnectorVersion = "1.4.197"
+        lombokVersion = "1.16.8"
+        jacksonDatatypeVersion = "2.4.0"
+
+        //Framework de testes
+        junitVersion = '4.12'
+        mockitoVersion = '1.10.19'
+        cucumberVersion = '1.2.4'
+        gherkinVersion = '2.12.2'
+        hamcrestAllVersion = '1.3'
+
+        //Logging
+        slf4jVersion = '1.7.25'
+
+        //Apache commons
+        apacheCommonsVersion = '1.11'
+
+        //MapStruct Processor
+        mapStructVersion = '1.2.0.Final'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url = 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+group = 'br.com.douglasffilho'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://plugins.gradle.org/m2/'
+    }
+}
+
+bootRun() {
+    dependsOn 'test'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+bootJar {
+    baseName = project.name
+    version = version
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-jersey:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+
+    compile("io.jsonwebtoken:jjwt:${jsonWebTokenVersion}")
+
+    compile("mysql:mysql-connector-java:${mySqlConnectorVersion}")
+    compile("com.h2database:h2:${h2DbConnectorVersion}")
+    compile("org.projectlombok:lombok:${lombokVersion}")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonDatatypeVersion}")
+
+    compile("org.slf4j:slf4j-api:${slf4jVersion}")
+
+    compile("commons-codec:commons-codec:${apacheCommonsVersion}")
+
+    //Swagger
+    compile("io.springfox:springfox-swagger-ui:${springfoxVersion}")
+    compile("io.springfox:springfox-swagger2:${springfoxVersion}")
+
+    compile("org.mapstruct:mapstruct-processor:${mapStructVersion}")
+
+    testCompile("junit:junit:${junitVersion}")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.security:spring-security-test")
+    testCompile("org.mockito:mockito-all:${mockitoVersion}")
+    testCompile("org.mockito:mockito-core:${mockitoVersion}")
+    testCompile("org.hamcrest:hamcrest-all:${hamcrestAllVersion}")
+    testCompile("info.cukes:cucumber-jvm:${cucumberVersion}")
+    testCompile("info.cukes:cucumber-core:${cucumberVersion}")
+    testCompile("info.cukes:cucumber-java:${cucumberVersion}")
+    testCompile("info.cukes:cucumber-junit:${cucumberVersion}")
+    testCompile("info.cukes:cucumber-spring:${cucumberVersion}")
+    testCompile("info.cukes:gherkin:${gherkinVersion}")
+}

@@ -1,0 +1,35 @@
+#PORTA SERVIDOR LOCAL
+server:
+  port: 8080
+#INFORMAÇÕES DE MONITORAÇÃO
+info:
+  app:
+    name: Help Me To Food User Services Microservice
+    description: API de acesso aos servicos de user
+    documentation: http://localhost:8080/swagger-ui.html
+#CONFIGURAÇÃO DE ACESSO AO BANCO DE DADOS
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: ${DATABASE_DRIVER}
+  jpa:
+    show_sql: true
+    format_sql: true
+    properties:
+      hibernate:
+        dialect: ${DATABASE_DIALECT}
+    hibernate:
+      ddl-auto: update
+#CONFIGURAÇÕES DE LOG
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+      hibernate: INFO
+#CONFIGURAÇÕES DE JWT
+jwt:
+  secret: and0YXBwc2VjdXJpdHlwaHJhc2U=
+  expiration: 1800
