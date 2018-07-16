@@ -38,7 +38,7 @@ public class UserRestApi {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize(value = "hasRole('ADMIN')")
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ApiOperation(value = "Lista com os usuários do sistema")
     @ApiImplicitParams({
@@ -64,7 +64,7 @@ public class UserRestApi {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation(value = "Obter dados de usuário por nome")
     @ApiImplicitParams({
             @ApiImplicitParam(
@@ -91,7 +91,7 @@ public class UserRestApi {
         }
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation(value = "Adicionar usuário")
     @ApiImplicitParams({
             @ApiImplicitParam(

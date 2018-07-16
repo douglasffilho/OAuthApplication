@@ -61,7 +61,8 @@ repositories {
 }
 
 bootRun() {
-    dependsOn 'test'
+    args = ["--spring.profiles.active=" + System.getenv("SPRING_PROFILES_ACTIVE")]
+    dependsOn('test')
 }
 
 buildscript {

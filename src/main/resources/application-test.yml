@@ -4,22 +4,22 @@ server:
 #INFORMAÇÕES DE MONITORAÇÃO
 info:
   app:
-    name: Help Me To Food User Services Microservice
-    description: API de acesso aos servicos de user
+    name: OAuthApplication
+    description: API de controle de acesso de usuario do sistema
     documentation: http://localhost:8080/swagger-ui.html
 #CONFIGURAÇÃO DE ACESSO AO BANCO DE DADOS
 spring:
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    driver-class-name: ${DATABASE_DRIVER}
+    url: jdbc:h2:mem:hmtf_db
+    username: admin
+    password: root
+    driver-class-name: org.h2.Driver
   jpa:
     show_sql: true
     format_sql: true
     properties:
       hibernate:
-        dialect: ${DATABASE_DIALECT}
+        dialect: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
 #CONFIGURAÇÕES DE LOG

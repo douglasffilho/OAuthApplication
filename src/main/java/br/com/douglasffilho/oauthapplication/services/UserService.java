@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserService {
     public User createDefaultUser() throws ServiceException;
 
+    public User createTestUser() throws ServiceException;
+
     public User save(User user) throws ServiceException;
 
     public List<User> list() throws ServiceException;

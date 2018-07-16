@@ -3,6 +3,7 @@ package br.com.douglasffilho.oauthapplication.security.services;
 import br.com.douglasffilho.oauthapplication.entities.User;
 import br.com.douglasffilho.oauthapplication.security.utils.JwtUserFactory;
 import br.com.douglasffilho.oauthapplication.services.UserService;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,13 +18,16 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        User user = this.userService.findByUsername(username);
-        if (user == null)
-            user = this.userService.findByEmail(username);
-        if (user != null) {
+        try {
+            final User user = this.userService.findByUsername(username);
             return JwtUserFactory.create(user);
+        } catch (final ServiceException ex1) {
+            try {
+                final User user = this.userService.findByEmail(username);
+                return JwtUserFactory.create(user);
+            } catch (final ServiceException ex2) {
+                throw new UsernameNotFoundException("Usuário não encontrado.");
+            }
         }
-
-        throw new UsernameNotFoundException("Usuário não encontrado.");
     }
 }

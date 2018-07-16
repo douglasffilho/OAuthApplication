@@ -1,14 +1,12 @@
 package br.com.douglasffilho.oauthapplication.utils.impl;
 
 import br.com.douglasffilho.oauthapplication.dto.UserDTO;
-import br.com.douglasffilho.oauthapplication.entities.Role;
 import br.com.douglasffilho.oauthapplication.entities.User;
 import br.com.douglasffilho.oauthapplication.utils.EntityFactory;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -24,14 +22,6 @@ public class UserFactory implements EntityFactory<User> {
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
                 .phone(userDTO.getPhone())
-                .roles(userDTO
-                        .getRoles()
-                        .stream()
-                        .map(role -> Role
-                                .builder()
-                                .role(role)
-                                .build())
-                        .collect(Collectors.toList()))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)
@@ -48,14 +38,6 @@ public class UserFactory implements EntityFactory<User> {
                 .email(userDTO.getEmail())
                 .password(userDTO.getPassword())
                 .phone(userDTO.getPhone())
-                .roles(userDTO
-                        .getRoles()
-                        .stream()
-                        .map(role -> Role
-                                .builder()
-                                .role(role)
-                                .build())
-                        .collect(Collectors.toList()))
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)
