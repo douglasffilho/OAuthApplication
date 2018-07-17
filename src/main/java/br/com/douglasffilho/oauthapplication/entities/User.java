@@ -24,7 +24,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false, exclude = {"id", "accountExpirationDate", "credentialsExpirationDate"})
 @Table(name = "users")
 public class User {
 

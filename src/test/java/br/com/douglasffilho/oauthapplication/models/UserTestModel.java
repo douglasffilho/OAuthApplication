@@ -19,4 +19,7 @@ public class UserTestModel {
 
     private String password;
 
+    private String phone;
+
+    private String role;
 }

@@ -7,7 +7,7 @@ info:
     name: OAuthApplication
     description: API de controle de acesso de usuario do sistema
     documentation: http://localhost:8080/swagger-ui.html
-#CONFIGURAÇÃO DE ACESSO AO BANCO DE DADOS
+#CONFIGURAÇÃO DE ACESSO AO BANCO DE DADOS (Preferencialmente MySql)
 spring:
   datasource:
     url: ${DATABASE_URL}
@@ -21,7 +21,7 @@ spring:
       hibernate:
         dialect: ${DATABASE_DIALECT}
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 #CONFIGURAÇÕES DE LOG
 logging:
   level:

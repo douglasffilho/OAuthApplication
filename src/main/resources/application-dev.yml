@@ -21,7 +21,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLInnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
 #CONFIGURAÇÕES DE LOG
 logging:
   level:

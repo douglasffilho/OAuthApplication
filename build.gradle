@@ -4,6 +4,8 @@ buildscript {
         springBootVersion = "2.0.1.RELEASE"
         springfoxVersion = '2.7.0'
 
+        //Flyway database migration
+        flywayVsersion = '5.1.4'
         //JsonWebToken
         jsonWebTokenVersion = '0.7.0'
 
@@ -62,7 +64,6 @@ repositories {
 
 bootRun() {
     args = ["--spring.profiles.active=" + System.getenv("SPRING_PROFILES_ACTIVE")]
-    dependsOn('test')
 }
 
 buildscript {
@@ -87,6 +88,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+
+    compile("org.flywaydb:flyway-core:${flywayVsersion}")
 
     compile("io.jsonwebtoken:jjwt:${jsonWebTokenVersion}")
 

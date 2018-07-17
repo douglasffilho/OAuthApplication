@@ -10,7 +10,7 @@ info:
 #CONFIGURAÇÃO DE ACESSO AO BANCO DE DADOS
 spring:
   datasource:
-    url: jdbc:h2:mem:hmtf_db
+    url: jdbc:h2:mem:HMTF_DB;MODE=MySQL;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:db/migration/test/init_tests.sql';
     username: admin
     password: root
     driver-class-name: org.h2.Driver
